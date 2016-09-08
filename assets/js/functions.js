@@ -17,16 +17,13 @@ var addItem = function( newData ) {
 deleteItem = function( index ) {
 	
 	var localItems = JSON.parse(localStorage.getItem('items'));
-	console.log('Deleting...');
-	console.log(localItems[index]);
-	delete localItems[index];
+	console.log("No. of items BEFORE DELETE: " + localItems.length );
+	localItems.splice(index,1);
+	console.log("No. of items AFTER DELETE: " + localItems.length );
 	localStorage.setItem('items',JSON.stringify(localItems));
-	logItems();
 },
 
 logItems = function() {
-
-	console.log("logging items...");
 
 	var items = JSON.parse( localStorage.getItem( 'items' ) );
 	
@@ -54,11 +51,13 @@ showItems = function() {
 
 	var localItems = JSON.parse(localStorage.getItem('items'));
 
+	console.log( localItems.length + " should be shown." );
+
 	if( localItems !== null ) {
 
 		for( var i = 0; i < localItems.length; i++ ) {
 
-			$("#reel").append(buildItem(localItems[i]));
+			$("#reel").append(buildItem(localItems[i],i));
 
 		}
 
@@ -66,39 +65,49 @@ showItems = function() {
 
 },
 
-buildItem = function( item ) {
+buildItem = function( item, id ) {
 
-	return $("<article class='item thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + item.id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a><</article>");
+	return $("<article class='item thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a></article>");
 
 },
 
 test = function() {
 
+var dummyData = [{
+		'title' : 'This is a title for 1',
+		'url' : 'http://www.one.com'
+	},{
+		'title' : 'This is a title for 2',
+		'url' : 'http://www.two.com'
+	},{
+		'title' : 'This is a title for 3',
+		'url' : 'http://www.three.com'
+	}
+];
 	console.log("Clear localStorage");
 	localStorage.removeItem('items');
 
-	console.log('log items');
+	console.log('log items (should be 0)');
 	logItems();
 
-	console.log('add 2 items');
-	addItem(
-		[{
-			'id' : '0',
-			'title' : 'This is a title for 1',
-			'url' : 'http://www.one.com'
-		},{
-			'id' : '1',
-			'title' : 'This is a title for 2',
-			'url' : 'http://www.two.com'
-		}]
-	);
+	console.log('add 3 items');
+	addItem(dummyData);
 
-	console.log('Show items in page');
+	console.log('log items (should be 3)');
+	logItems();
+
+	console.log("delete item 1 (array index 0)");
+	deleteItem("0");
+
+	console.log('log items (should be 2)');
+	logItems();
+
+	console.log("show items on page (shoudl show 2)");
 	showItems();
 
 };
 
-showItems();
+
 
 
 
