@@ -95,6 +95,8 @@ test = function() {
 
 };
 
+showItems();
+
 
 
 

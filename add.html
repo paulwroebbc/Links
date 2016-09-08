@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Add New Link</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	</head>
+	<body>
+
+		<h1>Add New Link</h1>
+
+		<form id="form" action="#">
+
+			<input type="text" name="title" id="title" placeholder="Title" />
+
+			<input type="text" name="url" id="url" placeholder="URL" />
+
+			<button type="submit">Add</button>
+
+		</form>
+
+	</body>
+
+	<script src="assets/js/functions.js"></script>
+	<script>
+		
+window.onload = function() {
+
+	var myForm = document.getElementById("form");
+
+	myForm.onsubmit = function( event ) {
+
+		event.preventDefault();
+
+		var localItems = JSON.parse(localStorage.getItem('items'));
+
+		var newData = {
+			"id" : localItems.length + 1,
+			"title" : myForm.elements['title'].value,
+			"url" : myForm.elements['url'].value
+		};
+
+		addItem(newData);
+
+		window.location.replace("index.html");
+
+	};
+
+};
+
+	</script>
+</html>
