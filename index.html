@@ -54,21 +54,12 @@
 
 			<div id="footer">
 				<div class="left">
-					<p>This is <strong>Parallelism</strong>, a responsive portfolio site template by <a href="http://html5up.net">HTML5 UP</a>. Free for personal<br />
-					and commercial use under the <a href="http://html5up.net/license">Creative Commons Attribution</a> license.</p>
-				</div>
-				<div class="right">
-					<ul class="contact">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-						<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+					<h2>Add New Link</h2>
+					<form id="form" action="#">
+						<input type="text" name="title" id="name" placeholder="Title" />
+						<input type="text" name="url" id="url" placeholder="url" />
+						<button type="submit">Add</button>
+					</form>
 				</div>
 			</div>
 
@@ -95,6 +86,32 @@ $( function() {
 	showItems();
 
 });
+			</script>
+			<script>
+
+window.onload = function() {
+
+	var myForm = document.getElementById("form");
+
+	myForm.onsubmit = function( event ) {
+
+		event.preventDefault();
+
+		var localItems = JSON.parse(localStorage.getItem('items'));
+
+		var newData = {
+			"id" : localItems.length + 1,
+			"title" : myForm.elements['title'].value,
+			"url" : myForm.elements['url'].value
+		};
+
+		addItem(newData);
+
+		window.location.replace("index.html");
+
+	};
+
+};
 			</script>
 			<script src="assets/js/main.js"></script>
 
