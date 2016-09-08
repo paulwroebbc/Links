@@ -88,6 +88,8 @@ $( function() {
 	$(document).on("click touch",".remove-item",function(event){
 		event.preventDefault();
 		deleteItem($(this).attr("data-item-id"));
+		$(this).closest(".item").remove();
+		window.location.replace("index.html");
 	});
 
 	showItems();

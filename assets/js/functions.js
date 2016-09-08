@@ -17,10 +17,9 @@ var addItem = function( newData ) {
 deleteItem = function( index ) {
 	
 	var localItems = JSON.parse(localStorage.getItem('items'));
-	console.log("No. of items BEFORE DELETE: " + localItems.length );
 	localItems.splice(index,1);
-	console.log("No. of items AFTER DELETE: " + localItems.length );
 	localStorage.setItem('items',JSON.stringify(localItems));
+	
 },
 
 logItems = function() {
