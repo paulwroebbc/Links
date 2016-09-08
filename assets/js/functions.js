@@ -14,16 +14,19 @@ var addItem = function( newData ) {
 
 },
 
-deleteItem = function( id ) {
+deleteItem = function( index ) {
 	
 	var localItems = JSON.parse(localStorage.getItem('items'));
-	console.log( 'Deleting...' + localItems[id] );
-	delete localItems[id];
+	console.log('Deleting...');
+	console.log(localItems[index]);
+	delete localItems[index];
 	localStorage.setItem('items',JSON.stringify(localItems));
-
+	logItems();
 },
 
 logItems = function() {
+
+	console.log("logging items...");
 
 	var items = JSON.parse( localStorage.getItem( 'items' ) );
 	
@@ -80,11 +83,11 @@ test = function() {
 	console.log('add 2 items');
 	addItem(
 		[{
-			'id' : '1',
+			'id' : '0',
 			'title' : 'This is a title for 1',
 			'url' : 'http://www.one.com'
 		},{
-			'id' : '2',
+			'id' : '1',
 			'title' : 'This is a title for 2',
 			'url' : 'http://www.two.com'
 		}]
@@ -94,6 +97,8 @@ test = function() {
 	showItems();
 
 };
+
+showItems();
 
 
 
