@@ -83,6 +83,16 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/functions.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+$( function() {
+
+	$(".remove-item").on("click touch",function(event){
+		event.preventDefault();
+		deleteItem($(this).attr("data-item-id"));
+	});
+
+});
+			</script>
 
 	</body>
 </html>

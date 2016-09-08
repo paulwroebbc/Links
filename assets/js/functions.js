@@ -65,7 +65,7 @@ showItems = function() {
 
 buildItem = function( item ) {
 
-	return $("<article class='item thumb' data-width='384'><h2>" + item.title + "</h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt=''></a></article>");
+	return $("<article class='item thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + item.id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a><</article>");
 
 },
 
@@ -95,7 +95,6 @@ test = function() {
 
 };
 
-showItems();
 
 
 
