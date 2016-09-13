@@ -60,7 +60,7 @@ showItems = function() {
 
 		for( var i = 0; i < localItems.length; i++ ) {
 
-			$("#reel").append(buildItem(localItems[i],i));
+			$("#reel").append( buildItem(localItems[i],i) );
 
 		}
 
@@ -70,7 +70,8 @@ showItems = function() {
 
 buildItem = function( item, id ) {
 
-	return $("<article class='item link thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a></article>");
+	var src = 'https://logo.clearbit.com/' + item.url + "?size=384";
+	return $("<article class='item link thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img class='image' src='" + src + "' alt='' /></a></article>");
 
 },
 

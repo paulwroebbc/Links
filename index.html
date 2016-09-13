@@ -56,43 +56,32 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/functions.js"></script>
 			<script>
+
 $( function() {
 
-	$(document).on("click touch",".remove-item",function(event){
-		event.preventDefault();
-		deleteItem($(this).attr("data-item-id"));
-		$(this).closest(".item").remove();
-		//window.location.replace("index.html");
-	});
-
-	showItems();
-
-});
-			</script>
-			<script>
-
-window.onload = function() {
-
-	var myForm = document.getElementById("form");
-
-	myForm.onsubmit = function( event ) {
+	$("#form").submit( function( event ) {
 
 		event.preventDefault();
 
 		var localItems = JSON.parse(localStorage.getItem('items'));
 
-		var newData = {
+		addItem({
 			"id" : localItems.length + 1,
-			"title" : myForm.elements['title'].value,
-			"url" : myForm.elements['url'].value
-		};
+			"title" : $("#form input[name='title']").val(),
+			"url" : $("#form input[name='url']").val()
+		});
 
-		addItem(newData);
-		//window.location.replace("index.html");
+	});
 
-	};
+	$(document).on( "click touch", ".remove-item", function( event ) {
+		event.preventDefault();
+		deleteItem($(this).attr("data-item-id"));
+		$(this).closest(".link").remove();
+	});
 
-};
+	showItems();
+
+});
 			</script>
 			<script src="assets/js/main.js"></script>
 
