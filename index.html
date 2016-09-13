@@ -62,7 +62,7 @@ $( function() {
 		event.preventDefault();
 		deleteItem($(this).attr("data-item-id"));
 		$(this).closest(".item").remove();
-		window.location.replace("index.html");
+		//window.location.replace("index.html");
 	});
 
 	showItems();
@@ -88,8 +88,7 @@ window.onload = function() {
 		};
 
 		addItem(newData);
-
-		window.location.replace("index.html");
+		//window.location.replace("index.html");
 
 	};
 

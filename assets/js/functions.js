@@ -12,6 +12,9 @@ var addItem = function( newData ) {
 
 	}
 
+	showItems();
+	parallelism.initDesktop();
+
 },
 
 deleteItem = function( index ) {
@@ -19,6 +22,7 @@ deleteItem = function( index ) {
 	var localItems = JSON.parse(localStorage.getItem('items'));
 	localItems.splice(index,1);
 	localStorage.setItem('items',JSON.stringify(localItems));
+	parallelism.initDesktop();
 
 },
 
@@ -48,9 +52,9 @@ logItems = function() {
 
 showItems = function() {
 
-	var localItems = JSON.parse(localStorage.getItem('items'));
+	$(".link").remove();
 
-	console.log( localItems.length + " should be shown." );
+	var localItems = JSON.parse(localStorage.getItem('items'));
 
 	if( localItems !== null ) {
 
@@ -66,8 +70,7 @@ showItems = function() {
 
 buildItem = function( item, id ) {
 
-	return $("<article class='item thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><iframe src='" + item.url + "'></iframe></article>");
-	//return $("<article class='item thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a></article>");
+	return $("<article class='item link thumb' data-width='384'><h2>" + item.title + " <a class='remove-item' data-item-id='" + id + "' href='#'>Remove</a></h2><a href='" + item.url + "'><img src='images/thumbs/02.jpg' alt='' /></a></article>");
 
 },
 
